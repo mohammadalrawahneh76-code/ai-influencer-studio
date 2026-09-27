@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Lumora — Create your AI Influencer</title>
+<meta name="description" content="Lumora is an AI influencer generator. Design a virtual influencer, keep the same face in every photo, and turn posts into short videos." />
+<meta property="og:title" content="Lumora — Create your AI Influencer" />
+<meta property="og:description" content="Design a virtual influencer and generate consistent photos and videos." />
+<meta name="theme-color" content="#0b0b0c" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0b0c'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='white' stroke-width='3'/%3E%3Ccircle cx='21.5' cy='10.5' r='2.6' fill='white'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<button class="skip" onclick="document.getElementById('main').focus()">Skip to content</button>
+
+<header class="topbar" id="topbar">
+  <button class="brand" data-go="/" aria-label="Lumora home" data-testid="link-home">
+    <svg class="logo" viewBox="0 0 132 28" fill="none" aria-hidden="true">
+      <circle cx="14" cy="14" r="10.5" stroke="currentColor" stroke-width="3.2"/>
+      <circle cx="21.2" cy="6.8" r="3.2" fill="currentColor"/>
+      <text x="33" y="21" fill="currentColor" font-family="Unbounded, sans-serif" font-weight="600" font-size="18" letter-spacing="0.5">lumora</text>
+    </svg>
+  </button>
+  <div class="topbar-right">
+    <button class="credits hidden" id="credits" data-go="/billing" data-testid="text-credits" title="Credits left"></button>
+    <button class="btn btn-light btn-sm" data-go="/app" data-testid="button-launch">Launch app</button>
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" data-testid="button-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="drawer" id="drawer" aria-label="Main">
+  <button data-go="/" data-testid="nav-home">Home</button>
+  <button data-go="/create" data-testid="nav-create">Create influencer</button>
+  <button data-go="/app" data-testid="nav-app">My influencers</button>
+  <button data-scroll="how" data-testid="nav-how">How it works</button>
+  <button data-scroll="pricing" data-testid="nav-pricing">Pricing</button>
+  <button data-scroll="faq" data-testid="nav-faq">FAQ</button>
+  <button data-go="/billing" data-testid="nav-billing" class="auth-only hidden">Credits &amp; billing</button>
+  <button data-go="/login" data-testid="nav-login" class="guest-only">Sign in</button>
+  <button id="logoutBtn" data-testid="nav-logout" class="auth-only hidden">Sign out</button>
+</nav>
+
+<main id="main" tabindex="-1">
+  <!-- LANDING -->
+  <section class="view" id="view-home">
+    <div class="hero">
+      <img class="hero-img" src="./assets/hero.jpg" alt="AI influencer applying skincare by a window" width="1100" height="1956" />
+      <div class="hero-shade"></div>
+      <div class="hero-content wrap">
+        <h1 class="display">Create your AI Influencer for free</h1>
+        <button class="btn btn-light btn-cta" data-go="/create" data-testid="button-create-hero">
+          <span>Create for free</span><small>No credit card needed</small>
+        </button>
+        <div class="split-line"><span>Scale impact</span><i></i><span>Monetize influence</span></div>
+        <ul class="diamonds">
+          <li>Photos &amp; videos by <b>LUMORA AI</b></li>
+          <li><b>Same face in every post, in any scene you can imagine</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="trust wrap">
+      <h2 class="h2 center">Built for creators who want to post every day without a camera</h2>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <figure><img src="./assets/s1.jpg" alt="" loading="lazy"/><figcaption>Marco · Fitness</figcaption></figure>
+        <figure><img src="./assets/s2.jpg" alt="" loading="lazy"/><figcaption>Yuna · Street style</figcaption></figure>
+        <figure><img src="./assets/s3.jpg" alt="" loading="lazy"/><figcaption>Isla · Travel</figcaption></figure>
+        <figure><img src="./assets/s4.jpg" alt="" loading="lazy"/><figcaption>Theo · Coffee &amp; books</figcaption></figure>
+        <figure><img src="./assets/s5.jpg" alt="" loading="lazy"/><figcaption>Nour · Fashion</figcaption></figure>
+        <figure><img src="./assets/s6.jpg" alt="" loading="lazy"/><figcaption>Ama · Wellness</figcaption></figure>
+        <figure><img src="./assets/s1.jpg" alt="" loading="lazy"/><figcaption>Marco · Fitness</figcaption></figure>
+        <figure><img src="./assets/s2.jpg" alt="" loading="lazy"/><figcaption>Yuna · Street style</figcaption></figure>
+        <figure><img src="./assets/s3.jpg" alt="" loading="lazy"/><figcaption>Isla · Travel</figcaption></figure>
+        <figure><img src="./assets/s4.jpg" alt="" loading="lazy"/><figcaption>Theo · Coffee &amp; books</figcaption></figure>
+        <figure><img src="./assets/s5.jpg" alt="" loading="lazy"/><figcaption>Nour · Fashion</figcaption></figure>
+        <figure><img src="./assets/s6.jpg" alt="" loading="lazy"/><figcaption>Ama · Wellness</figcaption></figure>
+      </div>
+    </div>
+
+    <section class="wrap section" id="how">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Three steps from idea to posting</h2>
+      <ol class="steps">
+        <li><span class="num">01</span><h3>Design the face</h3><p>Pick gender, age, look, hair and style, or describe them in your own words. Lumora creates a signature portrait.</p></li>
+        <li><span class="num">02</span><h3>Place them anywhere</h3><p>Gym, café, beach, red carpet. Every new photo keeps the same face, so your audience sees one real-looking person.</p></li>
+        <li><span class="num">03</span><h3>Animate and post</h3><p>Turn any photo into a vertical video, write a caption in their voice, and download it for Instagram or TikTok.</p></li>
+      </ol>
+    </section>
+
+    <section class="wrap section features">
+      <div class="feature feature-img">
+        <img src="./assets/s3.jpg" alt="AI travel influencer on a terrace at golden hour" loading="lazy" />
+      </div>
+      <div class="feature">
+        <p class="eyebrow">Consistent character</p>
+        <h2 class="h2">One identity. Unlimited content.</h2>
+        <p class="lead">Your influencer's signature look guides every image, so the face, hair and skin tone stay the same from post to post. Change the look anytime by making any photo the new reference.</p>
+        <ul class="ticks">
+          <li>Scene presets plus free-form prompts</li>
+          <li>Portrait, square and story formats</li>
+          <li>Short videos from any photo</li>
+          <li>Captions and hashtags in one tap</li>
+        </ul>
+        <button class="btn btn-light" data-go="/create" data-testid="button-create-feature">Start creating</button>
+      </div>
+    </section>
+
+    <section class="wrap section" id="pricing">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="h2">Start free. Top up when you need more</h2>
+      <p class="muted">Every new account gets <b id="signupCredits">20</b> free credits. A new influencer or photo costs 1 credit, a video costs 5. Credits never expire.</p>
+      <div class="packs" id="homePacks"></div>
+    </section>
+
+    <section class="wrap section" id="faq">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Questions, answered</h2>
+      <div class="faq">
+        <details><summary>Is it really free to start?</summary><p>Yes. Every new account gets free credits. A new influencer costs 1 credit, a photo 1 credit and a video 5 credits.</p></details>
+        <details><summary>Will the face stay the same?</summary><p>Each photo uses your influencer's signature portrait as a reference, so the identity stays consistent across scenes and outfits.</p></details>
+        <details><summary>Can I post the content on social media?</summary><p>Yes. Download any photo or video and post it. Many platforms ask you to label AI-generated content, so check each platform's rules.</p></details>
+        <details><summary>How long does it take?</summary><p>Photos take about 20 to 40 seconds. Videos take one to three minutes. You can keep working while they render.</p></details>
+      </div>
+    </section>
+
+    <section class="final">
+      <img src="./assets/s5.jpg" alt="" loading="lazy" />
+      <div class="final-shade"></div>
+      <div class="wrap final-content">
+        <h2 class="display display-sm">Your next influencer is one tap away</h2>
+        <button class="btn btn-light btn-cta" data-go="/create" data-testid="button-create-final"><span>Create for free</span><small>No credit card needed</small></button>
+      </div>
+    </section>
+
+    <footer class="footer wrap">
+      <span>© 2026 Lumora</span>
+      <span>AI-generated people are fictional. Label AI content where required.</span>
+    </footer>
+  </section>
+
+  <!-- CREATE -->
+  <section class="view app-view" id="view-create" hidden>
+    <div class="wrap narrow">
+      <p class="eyebrow">New influencer</p>
+      <h1 class="h1">Design your influencer</h1>
+      <p class="muted">Pick what you like. Anything you leave empty, the AI decides.</p>
+
+      <form id="createForm" class="form" autocomplete="off">
+        <label class="field">
+          <span class="label">Name</span>
+          <input name="name" required maxlength="40" placeholder="e.g. Layla Noor" data-testid="input-name" />
+        </label>
+
+        <div class="field"><span class="label">Gender</span>
+          <div class="chips" data-name="gender" data-single>
+            <button type="button" class="chip on" data-v="Woman">Woman</button>
+            <button type="button" class="chip" data-v="Man">Man</button>
+            <button type="button" class="chip" data-v="Non-binary person">Non-binary</button>
+          </div>
+        </div>
+
+        <div class="field"><span class="label">Age <output id="ageOut">24</output></span>
+          <input type="range" name="age" min="18" max="60" value="24" id="ageRange" data-testid="input-age" />
+        </div>
+
+        <div class="field"><span class="label">Ethnicity</span>
+          <div class="chips" data-name="ethnicity" data-single>
+            <button type="button" class="chip on" data-v="Any">Any</button>
+            <button type="button" class="chip" data-v="Middle Eastern">Middle Eastern</button>
+            <button type="button" class="chip" data-v="Latina/Latino">Latin</button>
+            <button type="button" class="chip" data-v="East Asian">East Asian</button>
+            <button type="button" class="chip" data-v="South Asian">South Asian</button>
+            <button type="button" class="chip" data-v="Black">Black</button>
+            <button type="button" class="chip" data-v="White European">European</button>
+            <button type="button" class="chip" data-v="Mixed-race">Mixed</button>
+          </div>
+        </div>
+
+        <div class="field"><span class="label">Hair</span>
+          <div class="chips" data-name="hair" data-single>
+            <button type="button" class="chip" data-v="Long dark wavy">Long dark wavy</button>
+            <button type="button" class="chip" data-v="Sleek blonde">Sleek blonde</button>
+            <button type="button" class="chip" data-v="Curly auburn">Curly auburn</button>
+            <button type="button" class="chip" data-v="Short black bob">Short bob</button>
+            <button type="button" class="chip" data-v="Braided">Braids</button>
+            <button type="button" class="chip" data-v="Short textured fade">Short fade</button>
+            <button type="button" class="chip" data-v="Shoulder-length brown">Brown, mid</button>
+            <button type="button" class="chip" data-v="Buzz cut">Buzz cut</button>
+          </div>
+        </div>
+
+        <div class="field"><span class="label">Eyes</span>
+          <div class="chips" data-name="eyes" data-single>
+            <button type="button" class="chip" data-v="Brown">Brown</button>
+            <button type="button" class="chip" data-v="Hazel">Hazel</button>
+            <button type="button" class="chip" data-v="Green">Green</button>
+            <button type="button" class="chip" data-v="Blue">Blue</button>
+          </div>
+        </div>
+
+        <div class="field"><span class="label">Body</span>
+          <div class="chips" data-name="body" data-single>
+            <button type="button" class="chip" data-v="Slim">Slim</button>
+            <button type="button" class="chip" data-v="Athletic">Athletic</button>
+            <button type="button" class="chip" data-v="Curvy">Curvy</button>
+            <button type="button" class="chip" data-v="Muscular">Muscular</button>
+          </div>
+        </div>
+
+        <div class="field"><span class="label">Style</span>
+          <div class="chips" data-name="style" data-single>
+            <button type="button" class="chip" data-v="Minimal clean">Minimal</button>
+            <button type="button" class="chip" data-v="Sporty chic">Sporty</button>
+            <button type="button" class="chip" data-v="Streetwear">Streetwear</button>
+            <button type="button" class="chip" data-v="High fashion">High fashion</button>
+            <button type="button" class="chip" data-v="Bohemian">Boho</button>
+            <button type="button" class="chip" data-v="Business smart">Business</button>
+          </div>
+        </div>
+
+        <div class="field"><span class="label">Niche</span>
+          <div class="chips" data-name="niche" data-single>
+            <button type="button" class="chip on" data-v="Lifestyle">Lifestyle</button>
+            <button type="button" class="chip" data-v="Fitness">Fitness</button>
+            <button type="button" class="chip" data-v="Fashion">Fashion</button>
+            <button type="button" class="chip" data-v="Beauty">Beauty</button>
+            <button type="button" class="chip" data-v="Travel">Travel</button>
+            <button type="button" class="chip" data-v="Food">Food</button>
+            <button type="button" class="chip" data-v="Tech">Tech</button>
+            <button type="button" class="chip" data-v="Gaming">Gaming</button>
+          </div>
+        </div>
+
+        <label class="field">
+          <span class="label">Extra details <em>optional</em></span>
+          <textarea name="details" rows="3" maxlength="300" placeholder="Freckles, small nose ring, warm smile, thick eyebrows..." data-testid="input-details"></textarea>
+        </label>
+
+        <div class="sticky-cta">
+          <button type="submit" class="btn btn-light btn-block" id="createBtn" data-testid="button-generate">Generate influencer · 1 credit</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- AUTH -->
+  <section class="view app-view" id="view-login" hidden>
+    <div class="wrap narrow auth-wrap">
+      <p class="eyebrow" id="authEyebrow">Welcome</p>
+      <h1 class="h1" id="authTitle">Create your free account</h1>
+      <p class="muted" id="authSub">Get free credits to design your first AI influencer.</p>
+      <form id="authForm" class="form" novalidate>
+        <label class="field"><span class="label">Email</span>
+          <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required data-testid="input-email"/></label>
+        <label class="field"><span class="label">Password <em>8+ characters</em></span>
+          <input type="password" name="password" autocomplete="new-password" placeholder="Your password" required minlength="8" data-testid="input-password"/></label>
+        <button class="btn btn-light btn-block" id="authBtn" type="submit" data-testid="button-auth-submit">Create account</button>
+        <p class="muted center" id="authSwitch"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- BILLING -->
+  <section class="view app-view" id="view-billing" hidden>
+    <div class="wrap narrow">
+      <p class="eyebrow">Credits &amp; billing</p>
+      <h1 class="h1"><span id="billCredits">0</span> credits left</h1>
+      <p class="muted" id="billEmail"></p>
+      <div id="billNotice"></div>
+      <div class="packs" id="billPacks"></div>
+      <p class="muted small">Payments are handled securely by Stripe. Lumora never sees your card details.</p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="view app-view" id="view-app" hidden>
+    <div class="wrap">
+      <div class="row-between">
+        <div>
+          <p class="eyebrow">Studio</p>
+          <h1 class="h1">My influencers</h1>
+        </div>
+        <button class="btn btn-light btn-sm" data-go="/create" data-testid="button-new">+ New</button>
+      </div>
+      <div id="charGrid" class="char-grid" data-testid="grid-influencers"></div>
+    </div>
+  </section>
+
+  <!-- INFLUENCER -->
+  <section class="view app-view" id="view-inf" hidden>
+    <div class="wrap">
+      <button class="back" data-go="/app" data-testid="button-back">← My influencers</button>
+      <div class="inf-head" id="infHead"></div>
+
+      <div class="composer" id="composer">
+        <h2 class="h3">New photo</h2>
+        <div class="chips scroll-x" id="presets"></div>
+        <textarea id="sceneInput" rows="3" maxlength="600" placeholder="Describe the scene, outfit and mood, e.g. sipping iced coffee on a Paris balcony, white linen shirt, morning sun" data-testid="input-scene"></textarea>
+        <div class="composer-row">
+          <div class="seg" id="aspectSeg" role="radiogroup" aria-label="Format">
+            <button type="button" class="on" data-v="3:4">Portrait</button>
+            <button type="button" data-v="1:1">Square</button>
+            <button type="button" data-v="9:16">Story</button>
+          </div>
+          <button class="btn btn-light" id="photoBtn" data-testid="button-generate-photo">Generate · 1</button>
+        </div>
+      </div>
+
+      <h2 class="h3 mt">Content</h2>
+      <div class="media-grid" id="mediaGrid" data-testid="grid-media"></div>
+    </div>
+  </section>
+</main>
+
+<!-- VIEWER -->
+<div class="modal" id="viewer" hidden role="dialog" aria-modal="true" aria-label="Media viewer">
+  <div class="modal-card">
+    <button class="icon-close" id="viewerClose" aria-label="Close" data-testid="button-close-viewer">×</button>
+    <div class="viewer-media" id="viewerMedia"></div>
+    <div class="viewer-body">
+      <p class="viewer-label" id="viewerLabel"></p>
+      <div class="viewer-actions" id="viewerActions"></div>
+      <div class="animate-box" id="animateBox" hidden>
+        <input id="motionInput" maxlength="300" placeholder="Motion, e.g. turns to camera and laughs, hair in the wind" data-testid="input-motion" />
+        <button class="btn btn-light btn-sm" id="animateGo" data-testid="button-animate-go">Make video · 5</button>
+      </div>
+      <div class="caption" id="captionBox" hidden></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./app.js"></script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://perplexity.localhost","http://localhost:1420","http://127.0.0.1:1420","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
